@@ -43,6 +43,7 @@ void Listener::connect(const std::string &uri)
     m_client->connect(connection);
 }
 
-void Listener::run() {
+void Listener::run()
+{
     m_client->run();
 }
