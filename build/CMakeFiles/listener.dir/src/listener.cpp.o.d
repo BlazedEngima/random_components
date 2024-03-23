@@ -1,6 +1,7 @@
 CMakeFiles/listener.dir/src/listener.cpp.o: \
  /home/me/Dev/Listener/src/listener.cpp /usr/include/stdc-predef.h \
- /home/me/Dev/Listener/include/listener.hpp /usr/include/c++/13/memory \
+ /home/me/Dev/Listener/include/listener.hpp \
+ /home/me/Dev/Listener/include/commons.hpp /usr/include/c++/13/memory \
  /usr/include/c++/13/bits/memoryfwd.h \
  /usr/include/c++/13/aarch64-redhat-linux/bits/c++config.h \
  /usr/include/c++/13/aarch64-redhat-linux/bits/os_defines.h \
@@ -1292,4 +1293,64 @@ CMakeFiles/listener.dir/src/listener.cpp.o: \
  /usr/include/websocketpp/processors/hybi13.hpp \
  /usr/include/websocketpp/sha1/sha1.hpp \
  /usr/include/websocketpp/version.hpp \
- /usr/include/websocketpp/impl/endpoint_impl.hpp
+ /usr/include/websocketpp/impl/endpoint_impl.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/json.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/adl_serializer.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/abi_macros.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/conversions/from_json.hpp \
+ /usr/include/c++/13/forward_list /usr/include/c++/13/bits/forward_list.h \
+ /usr/include/c++/13/bits/forward_list.tcc /usr/include/c++/13/valarray \
+ /usr/include/c++/13/bits/valarray_array.h \
+ /usr/include/c++/13/bits/valarray_array.tcc \
+ /usr/include/c++/13/bits/valarray_before.h \
+ /usr/include/c++/13/bits/slice_array.h \
+ /usr/include/c++/13/bits/valarray_after.h \
+ /usr/include/c++/13/bits/gslice.h \
+ /usr/include/c++/13/bits/gslice_array.h \
+ /usr/include/c++/13/bits/mask_array.h \
+ /usr/include/c++/13/bits/indirect_array.h \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/exceptions.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/value_t.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/macro_scope.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/detected.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/void_t.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/thirdparty/hedley/hedley.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/string_escape.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/input/position_t.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/cpp_future.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/type_traits.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/iterators/iterator_traits.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/call_std/begin.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/call_std/end.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/json_fwd.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/string_concat.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/identity_tag.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/std_fs.hpp \
+ /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
+ /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/codecvt \
+ /usr/include/c++/13/bits/fs_dir.h /usr/include/c++/13/bits/fs_ops.h \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/conversions/to_json.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/byte_container_with_subtype.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/hash.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/input/binary_reader.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/input/input_adapters.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/input/json_sax.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/input/lexer.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/meta/is_sax.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/input/parser.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/iterators/internal_iterator.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/iterators/iter_impl.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/json_custom_base_class.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/json_pointer.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/json_ref.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/output/binary_writer.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/output/output_adapters.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/output/serializer.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/conversions/to_chars.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/ordered_map.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/detail/macro_unscope.hpp \
+ /home/me/Dev/Listener/build/_deps/json-src/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+ /home/me/Dev/Listener/include/msg_handler.hpp

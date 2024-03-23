@@ -98,12 +98,12 @@ _deps/json-build/clean:
 CMakeFiles/listener.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/me/Dev/Listener/build/CMakeFiles --progress-num=1,2,3 "Built target listener"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/me/Dev/Listener/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target listener"
 .PHONY : CMakeFiles/listener.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/listener.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/me/Dev/Listener/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/me/Dev/Listener/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/listener.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/me/Dev/Listener/build/CMakeFiles 0
 .PHONY : CMakeFiles/listener.dir/rule

@@ -8,6 +8,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
 find_package(OpenSSL REQUIRED)
 find_package(MySQLCPPConnector REQUIRED)
+find_package(CURL REQUIRED COMPONENTS HTTP HTTPS) 
 include(cmake/fetchers/NlohmannJSON.cmake)
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
@@ -21,4 +22,5 @@ target_link_libraries(listener
     PUBLIC OpenSSL::SSL
     PUBLIC OpenSSL::Crypto
     PUBLIC nlohmann_json::nlohmann_json
+    PUBLIC CURL::libcurl
 )

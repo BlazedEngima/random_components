@@ -7,15 +7,15 @@
 #include <vector>
 #include <string>
 
-namespace DataType {
+namespace DataType
+{
 
-    struct Record {
-        std::vector<std::pair<double, double>> data;
+    struct Record
+    {
+        std::vector<std::pair<double, uint64_t>> data;
         std::mutex mutex;
     };
 
 }
-
-using book = std::unordered_map<std::string, DataType::Record>;
 
 #endif

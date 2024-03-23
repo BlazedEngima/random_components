@@ -8,13 +8,18 @@
 #include <queue>
 #include <functional>
 
-namespace Job {
+namespace Job
+{
 
-    class Queue {
+    class Queue
+    {
     public:
-        Queue(const int& size) : m_terminate(false) {
-            for (int i = 0; i < size; ++i) {
-                m_threads.emplace_back([this]() {
+        Queue(const int &size) : m_terminate(false)
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                m_threads.emplace_back([this]()
+                                       {
                     while (true) {
                         std::function<void()> task;
                         {
@@ -29,30 +34,30 @@ namespace Job {
                             m_tasks.pop();
                         }
                         task();
-                    }
-                });
+                    } });
             }
         }
 
-        ~Queue() {
+        ~Queue()
+        {
             {
                 std::unique_lock<std::mutex> lock(m_tasks_mutex);
                 m_terminate = true;
             }
             m_tasks_cv.notify_all();
-            for (auto& thread : m_threads) {
+            for (auto &thread : m_threads)
+            {
                 thread.join();
             }
         }
 
-        
-        template<typename F, typename... Args>
-        void enqueue(F&& f, Args&&... args) {
+        template <typename F, typename... Args>
+        void enqueue(F &&f, Args &&...args)
+        {
             {
                 std::unique_lock<std::mutex> lock(m_tasks_mutex);
-                m_tasks.emplace([f, args...]() {
-                    f(args...);
-                });
+                m_tasks.emplace([f, args...]()
+                                { f(args...); });
             }
             m_tasks_cv.notify_one();
         }

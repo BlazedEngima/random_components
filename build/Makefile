@@ -129,6 +129,30 @@ listener/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/build
 .PHONY : listener/fast
 
+src/db_handler.o: src/db_handler.cpp.o
+.PHONY : src/db_handler.o
+
+# target to build an object file
+src/db_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/db_handler.cpp.o
+.PHONY : src/db_handler.cpp.o
+
+src/db_handler.i: src/db_handler.cpp.i
+.PHONY : src/db_handler.i
+
+# target to preprocess a source file
+src/db_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/db_handler.cpp.i
+.PHONY : src/db_handler.cpp.i
+
+src/db_handler.s: src/db_handler.cpp.s
+.PHONY : src/db_handler.s
+
+# target to generate assembly for a file
+src/db_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/db_handler.cpp.s
+.PHONY : src/db_handler.cpp.s
+
 src/listener.o: src/listener.cpp.o
 .PHONY : src/listener.o
 
@@ -177,6 +201,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/requester.o: src/requester.cpp.o
+.PHONY : src/requester.o
+
+# target to build an object file
+src/requester.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/requester.cpp.o
+.PHONY : src/requester.cpp.o
+
+src/requester.i: src/requester.cpp.i
+.PHONY : src/requester.i
+
+# target to preprocess a source file
+src/requester.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/requester.cpp.i
+.PHONY : src/requester.cpp.i
+
+src/requester.s: src/requester.cpp.s
+.PHONY : src/requester.s
+
+# target to generate assembly for a file
+src/requester.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/requester.cpp.s
+.PHONY : src/requester.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +234,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... listener"
+	@echo "... src/db_handler.o"
+	@echo "... src/db_handler.i"
+	@echo "... src/db_handler.s"
 	@echo "... src/listener.o"
 	@echo "... src/listener.i"
 	@echo "... src/listener.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/requester.o"
+	@echo "... src/requester.i"
+	@echo "... src/requester.s"
 .PHONY : help
 
 

@@ -6,6 +6,8 @@ Listener::Listener(std::shared_ptr<book> &ledger) : m_client(std::make_shared<cl
     m_client->init_asio();
     m_client->set_tls_init_handler(
         std::bind(&Listener::on_tls_init));
+    m_client->set_message_handler([this](websocketpp::connection_hdl hdl_connection, client::message_ptr message)
+                                  { MsgHandler::on_message(m_client.get(), hdl_connection.lock(), message, m_book); });
 }
 
 context_ptr Listener::on_tls_init()
@@ -39,4 +41,8 @@ void Listener::connect(const std::string &uri)
     }
 
     m_client->connect(connection);
+}
+
+void Listener::run() {
+    m_client->run();
 }

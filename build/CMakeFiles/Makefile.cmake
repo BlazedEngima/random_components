@@ -107,6 +107,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/ExternalProject/shared_internal_commands.cmake"
   "/usr/share/cmake/Modules/FetchContent.cmake"
   "/usr/share/cmake/Modules/FetchContent/CMakeLists.cmake.in"
+  "/usr/share/cmake/Modules/FindCURL.cmake"
   "/usr/share/cmake/Modules/FindOpenSSL.cmake"
   "/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake/Modules/FindPackageMessage.cmake"
@@ -120,6 +121,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Platform/Linux-Initialize.cmake"
   "/usr/share/cmake/Modules/Platform/Linux.cmake"
   "/usr/share/cmake/Modules/Platform/UnixPaths.cmake"
+  "/usr/share/cmake/Modules/SelectLibraryConfigurations.cmake"
   "/usr/share/cmake/Modules/WriteBasicConfigVersionFile.cmake"
   )
 
