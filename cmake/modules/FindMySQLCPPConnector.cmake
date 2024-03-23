@@ -4,10 +4,10 @@
 set(MySQLCPPConnector_ROOT_DIR "${CMAKE_SOURCE_DIR}/lib/mysql-cpp-connector")
 set(MySQLCPPConnector_INCLUDE_DIR "${MySQLCPPConnector_ROOT_DIR}/include")
 
-if($ENV{HOST_ARCH} MATCHES "arm64")
-    set(MySQLCPPConnector_LIB_DIR "${MySQLCPPConnector_ROOT_DIR}/lib64")
+if(($ENV{HOST_ARCH} MATCHES "arm64") OR ($ENV{HOST_ARCH} MATCHES "aarch64"))
+  set(MySQLCPPConnector_LIB_DIR "${MySQLCPPConnector_ROOT_DIR}/lib64")
 else()
-    set(MySQLCPPConnector_LIB_DIR "${MySQLCPPConnector_ROOT_DIR}/lib64-x86_64")
+  set(MySQLCPPConnector_LIB_DIR "${MySQLCPPConnector_ROOT_DIR}/lib64-x86_64")
 endif()
 
 find_library(MySQLCPPConnector_LIB mysqlcppconn8
