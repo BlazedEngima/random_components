@@ -1,0 +1,13 @@
+version: '3'
+services:
+  listener:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - HOST_ARCH=${HOST_ARCH}
+    command: ["build/listener", "config.json"]
+    environment:
+      - HOST_ARCH=${HOST_ARCH}
+    stop_signal: SIGTERM
+    stop_grace_period: 9s

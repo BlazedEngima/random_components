@@ -1,6 +1,10 @@
 # Use the Fedora Minimal image
 FROM registry.fedoraproject.org/fedora-minimal:latest
 
+# Set the HOST_ARCH environment variable
+ARG HOST_ARCH
+ENV HOST_ARCH=${HOST_ARCH}
+
 # Install necessary dependencies
 RUN microdnf -y update && microdnf install -y \
     gcc \
