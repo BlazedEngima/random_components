@@ -1,9 +1,0 @@
-version: '3'
-services:
-  listener:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    command: ["build/listener", "config.json"]
-    stop_signal: SIGTERM
-    stop_grace_period: 15s

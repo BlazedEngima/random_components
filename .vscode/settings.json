@@ -78,6 +78,7 @@
         "csignal": "cpp",
         "any": "cpp",
         "coroutine": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "__split_buffer": "cpp"
     }
 }
