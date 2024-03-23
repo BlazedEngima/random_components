@@ -7,7 +7,7 @@
 #include <filesystem>
 #include <iostream>
 
-class config
+class Config
 {
 public:
     std::string host;
@@ -15,7 +15,7 @@ public:
     std::string password;
     std::string database_name;
 
-    config(const std::string &filename)
+    Config(const std::string &filename)
     {
         std::filesystem::path dir_path = std::filesystem::current_path();
         std::string config_path = (dir_path / filename).string();
@@ -26,13 +26,13 @@ public:
             throw std::runtime_error("Could not open config file at path: " + config_path);
         }
 
-        nlohmann::json data;
-        stream >> data;
+        nlohmann::json config;
+        stream >> config;
 
-        host = data["host"];
-        username = data["username"];
-        password = data["password"];
-        database_name = data["database_name"];
+        host = config["host"];
+        username = config["username"];
+        password = config["password"];
+        database_name = config["database_name"];
     }
 };
 

@@ -6,6 +6,7 @@ project(listener)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
+find_package(OpenSSL REQUIRED)
 find_package(MySQLCPPConnector REQUIRED)
 include(cmake/fetchers/NlohmannJSON.cmake)
 
@@ -17,5 +18,7 @@ target_include_directories(listener
 )
 target_link_libraries(listener 
     PUBLIC ${MySQLCPPConnector_LIB}
+    PUBLIC OpenSSL::SSL
+    PUBLIC OpenSSL::Crypto
     PUBLIC nlohmann_json::nlohmann_json
 )

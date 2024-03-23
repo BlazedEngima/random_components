@@ -8,11 +8,11 @@
 #include <queue>
 #include <functional>
 
-namespace job {
+namespace Job {
 
-    class queue {
+    class Queue {
     public:
-        queue(const int& size) : m_terminate(false) {
+        Queue(const int& size) : m_terminate(false) {
             for (int i = 0; i < size; ++i) {
                 m_threads.emplace_back([this]() {
                     while (true) {
@@ -34,7 +34,7 @@ namespace job {
             }
         }
 
-        ~queue() {
+        ~Queue() {
             {
                 std::unique_lock<std::mutex> lock(m_tasks_mutex);
                 m_terminate = true;
