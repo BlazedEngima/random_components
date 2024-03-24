@@ -4,7 +4,6 @@ clean:
 	cmake --build build
 
 up:
-	export HOST_ARCH=`uname -m` ;\
 	docker-compose up
 
 down:

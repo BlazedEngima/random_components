@@ -1,12 +1,9 @@
 # Use the Fedora Minimal image
 FROM registry.fedoraproject.org/fedora-minimal:latest
 
-# Set the HOST_ARCH environment variable
-ARG HOST_ARCH
-ENV HOST_ARCH=${HOST_ARCH}
-
 # Install necessary dependencies
 RUN microdnf -y update && microdnf install -y \
+    git \
     gcc \
     gcc-c++ \
     cmake \
@@ -16,6 +13,7 @@ RUN microdnf -y update && microdnf install -y \
     websocketpp-devel \
     && microdnf clean all
 
+
 # Set the working directory in the Docker image
 WORKDIR /app
 
@@ -23,7 +21,7 @@ WORKDIR /app
 COPY . /app
 
 # Run make clean to build the project
-RUN make clean
+RUN ./platform_specific_connector.sh && make clean
 
 # Set the command to run your application when the Docker container starts
 CMD ["build/listener", "config.json"]
