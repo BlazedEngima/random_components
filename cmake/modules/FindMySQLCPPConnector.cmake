@@ -12,7 +12,7 @@ endif()
 
 find_library(MySQLCPPConnector_LIB mysqlcppconn8
     HINTS
-        ${MySQLCPPConnector_ROOT_DIR}/lib
+    ${MySQLCPPConnector_LIB_DIR}
 )
 
 include(FindPackageHandleStandardArgs)
