@@ -3,7 +3,6 @@ FROM registry.fedoraproject.org/fedora-minimal:latest
 
 # Install necessary dependencies
 RUN microdnf -y update && microdnf install -y \
-    git \
     gcc \
     gcc-c++ \
     cmake \
