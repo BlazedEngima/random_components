@@ -21,7 +21,7 @@ WORKDIR /app
 COPY . /app
 
 # Run make clean to build the project
-RUN ./platform_specific_connector.sh && make clean
+RUN make clean
 
 # Set the command to run your application when the Docker container starts
 CMD ["build/listener", "config.json"]
