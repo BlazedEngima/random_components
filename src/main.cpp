@@ -9,6 +9,7 @@
 #include <listener.hpp>
 #include <requester.hpp>
 #include <db_handler.hpp>
+#include <csv_sym_parser.hpp>
 
 constexpr int MAX_THREADS = 4;
 constexpr int DB_PORT = 33060;
@@ -23,7 +24,9 @@ int main(int argc, char *argv[])
     std::shared_ptr<DBHandler> db = std::make_shared<DBHandler>(
         config->host, config->username, config->password, config->database_name, DB_PORT);
 
-    std::vector<std::string> symbols = Requester::get_top_assets(50);
+    // std::vector<std::string> symbols = Requester::get_top_assets(50);
+    std::vector<std::string> symbols = CSVSymParser::parse(config->csv_file_path);
+
     // subsribe to the top 50 symbols
     for (const std::string symbol : symbols)
     {

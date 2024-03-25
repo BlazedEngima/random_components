@@ -14,6 +14,7 @@ public:
     std::string username;
     std::string password;
     std::string database_name;
+    std::string csv_file_path;
 
     Config(const std::string &filename)
     {
@@ -33,6 +34,7 @@ public:
         username = config["username"];
         password = config["password"];
         database_name = config["database_name"];
+        csv_file_path = (dir_path / config["csv_file_path"]).string();
     }
 };
 
