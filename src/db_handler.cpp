@@ -66,17 +66,15 @@ void DBHandler::insert_to_db(const std::string &symbol, const double &price, con
         std::string lowercase_symbol = SymHandler::Binance::transform(symbol);
 
         // Check if the table exists
-        std::stringstream ss;
-        ss << lowercase_symbol << "_usdt_futures";
-        if (!schema.getTable(ss.str()).existsInDatabase())
+        if (!schema.getTable(lowercase_symbol).existsInDatabase())
         {
             // If the table does not exist, create it
-            std::string create_table_query = "CREATE TABLE " + ss.str() + " (price DOUBLE, timestamp BIGINT UNSIGNED, PRIMARY KEY (timestamp))";
+            std::string create_table_query = "CREATE TABLE " + lowercase_symbol + " (price DOUBLE, timestamp BIGINT UNSIGNED, PRIMARY KEY (timestamp))";
             session->sql(create_table_query).execute();
         }
 
         // Get the table
-        mysqlx::Table table = schema.getTable(ss.str());
+        mysqlx::Table table = schema.getTable(lowercase_symbol);
 
         // Insert a new row
         table.insert("price", "timestamp")
