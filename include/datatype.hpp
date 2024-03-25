@@ -1,11 +1,12 @@
 #ifndef DATATYPE_HPP
 #define DATATYPE_HPP
 
-#include <unordered_map>
 #include <memory>
 #include <mutex>
 #include <vector>
 #include <string>
+#include <utility>
+#include <unordered_map>
 
 namespace DataType
 {

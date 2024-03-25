@@ -5,6 +5,7 @@
 #include <jobs.hpp>
 #include <config.hpp>
 #include <commons.hpp>
+#include <compute.hpp>
 #include <listener.hpp>
 #include <requester.hpp>
 #include <db_handler.hpp>
@@ -42,9 +43,9 @@ int main(int argc, char *argv[])
         std::this_thread::sleep_for(std::chrono::minutes(1));
 
         for (const auto &symbol : (*logbook))
-        {
+        {   
             jobs.enqueue(
-                [&logbook, symbol = symbol.first, &db]
+                [&logbook, symbol = symbol.first, &db, &jobs]
                 {
                     std::lock_guard<std::mutex> lock((*logbook)[symbol].mutex);
                     const auto &vec = (*logbook)[symbol].data;
@@ -54,15 +55,14 @@ int main(int argc, char *argv[])
                         return;
                     }
 
-                    double sum = std::accumulate(vec.begin(), vec.end(), 0.0,
-                                                 [](double acc, const std::pair<double, uint64_t> &p)
-                                                 {
-                                                     return acc + p.first;
-                                                 });
+                    double avg = Compute::Average::minute(vec);
+                    u_int64_t time = vec.back().second;
 
-                    double average = sum / vec.size();
-                    double time = vec.back().second;
-                    db->insert_to_db(symbol, average, time);
+                    jobs.enqueue(
+                        [&db, symbol, avg, time]
+                        {
+                            db->insert_to_db(symbol, avg, time);
+                        });
                 });
         }
     }

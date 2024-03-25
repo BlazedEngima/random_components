@@ -79,6 +79,19 @@
         "any": "cpp",
         "coroutine": "cpp",
         "future": "cpp",
-        "__split_buffer": "cpp"
+        "__split_buffer": "cpp",
+        "__config": "cpp",
+        "__debug": "cpp",
+        "__mutex_base": "cpp",
+        "__threading_support": "cpp",
+        "__verbose_abort": "cpp",
+        "__bit_reference": "cpp",
+        "__hash_table": "cpp",
+        "__locale": "cpp",
+        "__node_handle": "cpp",
+        "__tree": "cpp",
+        "execution": "cpp",
+        "ios": "cpp",
+        "locale": "cpp"
     }
 }
