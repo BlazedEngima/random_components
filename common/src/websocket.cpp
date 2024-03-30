@@ -1,13 +1,11 @@
 #include <websocket.hpp>
 
 Websocket::Websocket(std::shared_ptr<book> &ledger) : m_client(std::make_shared<client>()),
-                                                    m_book(ledger)
+                                                      m_book(ledger)
 {
     m_client->init_asio();
     m_client->set_tls_init_handler(
         std::bind(&Websocket::on_tls_init));
-    m_client->set_message_handler([this](websocketpp::connection_hdl hdl_connection, client::message_ptr message)
-                                  { MsgHandler::on_message(m_client.get(), hdl_connection.lock(), message, m_book); });
 }
 
 context_ptr Websocket::on_tls_init()

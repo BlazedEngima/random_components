@@ -2,11 +2,10 @@
 #define WEBSOCKET_HPP
 
 #include <aliases.hpp>
-#include <msg_handler.hpp>
 
 class Websocket
 {
-private:
+protected:
     client_ptr m_client;
     std::shared_ptr<book> m_book;
 
@@ -14,8 +13,8 @@ private:
 
 public:
     Websocket(std::shared_ptr<book> &ledger);
-    void connect(const std::string &uri);
-    void run();
+    virtual void connect(const std::string &uri);
+    virtual void run();
 };
 
 #endif

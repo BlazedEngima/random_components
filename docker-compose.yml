@@ -17,3 +17,4 @@ services:
       - ./entrypoint.sh:/app/entrypoint.sh
     stop_signal: SIGTERM
     stop_grace_period: 9s
+    tty: true

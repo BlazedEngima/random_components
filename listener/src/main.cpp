@@ -6,7 +6,7 @@
 #include <config.hpp>
 #include <aliases.hpp>
 #include <compute.hpp>
-#include <websocket.hpp>
+#include <Listener.hpp>
 #include <requester.hpp>
 #include <db_handler.hpp>
 #include <csv_sym_parser.hpp>
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     Job::Queue jobs{MAX_THREADS};
     std::shared_ptr<Config> config = std::make_shared<Config>(argv[1]);
     std::shared_ptr<book> logbook = std::make_shared<book>();
-    std::shared_ptr<Websocket> listener = std::make_shared<Websocket>(logbook);
+    std::shared_ptr<Listener> listener = std::make_shared<Listener>(logbook);
     std::shared_ptr<DBHandler> db = std::make_shared<DBHandler>(
         config->host, config->username, config->password, config->database_name, DB_PORT);
 
