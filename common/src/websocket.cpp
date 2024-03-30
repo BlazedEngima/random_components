@@ -1,16 +1,16 @@
-#include <listener.hpp>
+#include <websocket.hpp>
 
-Listener::Listener(std::shared_ptr<book> &ledger) : m_client(std::make_shared<client>()),
+Websocket::Websocket(std::shared_ptr<book> &ledger) : m_client(std::make_shared<client>()),
                                                     m_book(ledger)
 {
     m_client->init_asio();
     m_client->set_tls_init_handler(
-        std::bind(&Listener::on_tls_init));
+        std::bind(&Websocket::on_tls_init));
     m_client->set_message_handler([this](websocketpp::connection_hdl hdl_connection, client::message_ptr message)
                                   { MsgHandler::on_message(m_client.get(), hdl_connection.lock(), message, m_book); });
 }
 
-context_ptr Listener::on_tls_init()
+context_ptr Websocket::on_tls_init()
 {
     context_ptr ctx = websocketpp::lib::make_shared<context>(context::tlsv12);
 
@@ -29,7 +29,7 @@ context_ptr Listener::on_tls_init()
     return ctx;
 }
 
-void Listener::connect(const std::string &uri)
+void Websocket::connect(const std::string &uri)
 {
     websocketpp::lib::error_code ec;
     client::connection_ptr connection = m_client->get_connection(uri, ec);
@@ -43,7 +43,7 @@ void Listener::connect(const std::string &uri)
     m_client->connect(connection);
 }
 
-void Listener::run()
+void Websocket::run()
 {
     m_client->run();
 }

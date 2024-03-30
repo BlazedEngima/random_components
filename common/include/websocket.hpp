@@ -1,10 +1,10 @@
-#ifndef LISTENER_HPP
-#define LISTENER_HPP
+#ifndef WEBSOCKET_HPP
+#define WEBSOCKET_HPP
 
-#include <commons.hpp>
+#include <aliases.hpp>
 #include <msg_handler.hpp>
 
-class Listener
+class Websocket
 {
 private:
     client_ptr m_client;
@@ -13,7 +13,7 @@ private:
     static context_ptr on_tls_init();
 
 public:
-    Listener(std::shared_ptr<book> &ledger);
+    Websocket(std::shared_ptr<book> &ledger);
     void connect(const std::string &uri);
     void run();
 };

@@ -1,10 +1,19 @@
-version: '3'  
-
-services: 
-  listener: 
-    build:  
-      context: .  
-      dockerfile: Dockerfile  
-    command: ["build/listener", "config.json"]  
-    stop_signal: SIGTERM  
-    stop_grace_period: 9s  
+version: '3'
+services:
+  listener:
+    build:
+      context: .
+      dockerfile: listener_dockerfile
+    entrypoint: ["/app/entrypoint.sh"]
+    command: ["build/bin/listener", "configs/listener/config.json"]
+    volumes:
+      - ./common:/app/common
+      - ./configs/listener:/app/configs/listener
+      - ./listener:/app/listener
+      - ./Makefile:/app/Makefile
+      - ./lib:/app/lib
+      - ./CMakeLists.txt:/app/CMakeLists.txt
+      - ./cmake:/app/cmake
+      - ./entrypoint.sh:/app/entrypoint.sh
+    stop_signal: SIGTERM
+    stop_grace_period: 9s
