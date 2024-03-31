@@ -1,18 +1,18 @@
 #ifndef WEBSOCKET_HPP
 #define WEBSOCKET_HPP
 
-#include <aliases.hpp>
+#include <commons.hpp>
 
 class Websocket
 {
 protected:
     client_ptr m_client;
-    std::shared_ptr<book> m_book;
+    std::unordered_map<std::string, client::connection_ptr> m_connections;
 
     static context_ptr on_tls_init();
 
 public:
-    Websocket(std::shared_ptr<book> &ledger);
+    Websocket();
     virtual void connect(const std::string &uri);
     virtual void run();
 };

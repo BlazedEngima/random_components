@@ -1,7 +1,6 @@
 #include <websocket.hpp>
 
-Websocket::Websocket(std::shared_ptr<book> &ledger) : m_client(std::make_shared<client>()),
-                                                      m_book(ledger)
+Websocket::Websocket() : m_client(std::make_shared<client>())
 {
     m_client->init_asio();
     m_client->set_tls_init_handler(
@@ -29,6 +28,11 @@ context_ptr Websocket::on_tls_init()
 
 void Websocket::connect(const std::string &uri)
 {
+    if (m_connections.find(uri) != m_connections.end())
+    {
+        return;
+    }
+
     websocketpp::lib::error_code ec;
     client::connection_ptr connection = m_client->get_connection(uri, ec);
 
@@ -37,8 +41,9 @@ void Websocket::connect(const std::string &uri)
         std::cout << "Could not create connection because: " << ec.message() << std::endl;
         return;
     }
-
+    
     m_client->connect(connection);
+    m_connections[uri] = connection;
 }
 
 void Websocket::run()

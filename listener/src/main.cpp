@@ -4,12 +4,13 @@
 #include <condition_variable>
 #include <jobs.hpp>
 #include <config.hpp>
-#include <aliases.hpp>
+#include <commons.hpp>
 #include <compute.hpp>
 #include <Listener.hpp>
 #include <requester.hpp>
 #include <db_handler.hpp>
 #include <csv_sym_parser.hpp>
+#include <sym_handler.hpp>
 
 constexpr int MAX_THREADS = 4;
 constexpr int DB_PORT = 33060;
@@ -64,7 +65,9 @@ int main(int argc, char *argv[])
                     jobs.enqueue(
                         [&db, symbol, avg, time]
                         {
-                            db->insert_to_db(symbol, avg, time);
+                            // may include exchange type in the future (switch + enum)
+                            std::string lowercase = SymHandler::Binance::transform(symbol);
+                            db->insert_to_db(lowercase, avg, time);
                         });
                 });
         }

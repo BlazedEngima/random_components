@@ -1,5 +1,4 @@
 #include <db_handler.hpp>
-#include <sym_handler.hpp>
 #include <iostream>
 #include <sstream>
 
@@ -62,19 +61,16 @@ void DBHandler::insert_to_db(const std::string &symbol, const double &price, con
         // Get the schema
         mysqlx::Schema schema = session->getSchema(db_name);
 
-        // Get the lowercase symbol
-        std::string lowercase_symbol = SymHandler::Binance::transform(symbol);
-
         // Check if the table exists
-        if (!schema.getTable(lowercase_symbol).existsInDatabase())
+        if (!schema.getTable(symbol).existsInDatabase())
         {
             // If the table does not exist, create it
-            std::string create_table_query = "CREATE TABLE " + lowercase_symbol + " (price DOUBLE, timestamp BIGINT UNSIGNED, PRIMARY KEY (timestamp))";
+            std::string create_table_query = "CREATE TABLE " + symbol + " (price DOUBLE, timestamp BIGINT UNSIGNED, PRIMARY KEY (timestamp))";
             session->sql(create_table_query).execute();
         }
 
         // Get the table
-        mysqlx::Table table = schema.getTable(lowercase_symbol);
+        mysqlx::Table table = schema.getTable(symbol);
 
         // Insert a new row
         table.insert("price", "timestamp")

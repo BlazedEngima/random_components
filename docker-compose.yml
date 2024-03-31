@@ -18,3 +18,21 @@ services:
     stop_signal: SIGTERM
     stop_grace_period: 9s
     tty: true
+  poster:
+    build:
+      context: .
+      dockerfile: poster_dockerfile
+    entrypoint: ["/app/entrypoint.sh"]
+    command: ["build/bin/poster"]
+    volumes:
+      - ./common:/app/common
+      - ./configs/poster:/app/configs/poster
+      - ./poster:/app/poster
+      - ./Makefile:/app/Makefile
+      - ./lib:/app/lib
+      - ./CMakeLists.txt:/app/CMakeLists.txt
+      - ./cmake:/app/cmake
+      - ./entrypoint.sh:/app/entrypoint.sh
+    stop_signal: SIGTERM
+    stop_grace_period: 9s
+    tty: true
