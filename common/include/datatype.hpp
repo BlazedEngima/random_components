@@ -1,22 +1,14 @@
-#ifndef DATATYPE_HPP
-#define DATATYPE_HPP
+#pragma once
 
-#include <memory>
 #include <mutex>
-#include <vector>
-#include <string>
 #include <utility>
-#include <unordered_map>
+#include <vector>
 
-namespace DataType
-{
+namespace DataType {
 
-    struct Record
-    {
-        std::vector<std::pair<double, uint64_t>> data;
-        std::mutex mutex;
-    };
+struct Record {
+    std::vector<std::pair<double, uint64_t>> data;
+    std::mutex mutex;
+};
 
-}
-
-#endif
+} // namespace DataType

@@ -1,5 +1,5 @@
 # Use the Fedora Minimal image
-FROM registry.fedoraproject.org/fedora-minimal:latest
+FROM registry.fedoraproject.org/fedora-minimal:40
 
 # Install necessary dependencies
 RUN microdnf -y update && microdnf install -y \

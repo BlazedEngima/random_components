@@ -1,14 +1,13 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
 
-#include <nlohmann/json.hpp>
-#include <fstream>
-#include <string>
 #include <filesystem>
+#include <fstream>
 #include <iostream>
+#include <nlohmann/json.hpp>
+#include <string>
 
-class Config
-{
+namespace Config {
+class Read {
 public:
     std::string host;
     std::string username;
@@ -16,15 +15,14 @@ public:
     std::string database_name;
     std::string csv_file_path;
 
-    Config(const std::string &filename)
+    Read(const std::filesystem::path& filepath)
     {
         std::filesystem::path dir_path = std::filesystem::current_path();
-        std::string config_path = (dir_path / filename).string();
+        std::filesystem::path config_path = dir_path / filepath;
 
         std::ifstream stream(config_path);
-        if (!stream.is_open())
-        {
-            throw std::runtime_error("Could not open config file at path: " + config_path);
+        if (!stream.is_open()) {
+            throw std::runtime_error("Could not open config file at path: " + config_path.string());
         }
 
         nlohmann::json config;
@@ -44,8 +42,6 @@ public:
         std::cout << "Password: " << password << std::endl;
         std::cout << "Database name: " << database_name << std::endl;
         std::cout << "CSV file path: " << csv_file_path << std::endl;
-        
     }
 };
-
-#endif
+} // namespace Config

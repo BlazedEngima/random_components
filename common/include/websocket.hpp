@@ -1,10 +1,8 @@
-#ifndef WEBSOCKET_HPP
-#define WEBSOCKET_HPP
+#pragma once
 
 #include <commons.hpp>
 
-class Websocket
-{
+class Websocket {
 protected:
     client_ptr m_client;
     std::unordered_map<std::string, client::connection_ptr> m_connections;
@@ -13,8 +11,7 @@ protected:
 
 public:
     Websocket();
-    virtual void connect(const std::string &uri);
+    virtual ~Websocket() = default;
+    virtual void connect(const std::string& uri);
     virtual void run();
 };
-
-#endif
