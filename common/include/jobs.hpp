@@ -6,47 +6,17 @@
 #include <queue>
 #include <thread>
 
-namespace Job {
+namespace Common
+{
 
-class Queue {
-public:
-    Queue(const int size)
-        : m_terminate(false)
-    {
-        for (int i = 0; i < size; ++i) {
-            m_threads.emplace_back([this]() {
-                while (true) {
-                    std::function<void()> task;
-                    {
-                        std::unique_lock<std::mutex> lock(m_tasks_mutex);
-                        m_tasks_cv.wait(
-                            lock, [this]() { return m_terminate || !m_tasks.empty(); });
-                        if (m_terminate && m_tasks.empty()) {
-                            return;
-                        }
-                        task = m_tasks.front();
-                        m_tasks.pop();
-                    }
-                    task();
-                }
-            });
-        }
-    }
+class JobQueue
+{
+  public:
+    JobQueue(const int size);
 
-    ~Queue()
-    {
-        {
-            std::unique_lock<std::mutex> lock(m_tasks_mutex);
-            m_terminate = true;
-        }
-        m_tasks_cv.notify_all();
-        for (auto& thread : m_threads) {
-            thread.join();
-        }
-    }
+    ~JobQueue();
 
-    template <typename F, typename... Args>
-    void enqueue(F&& f, Args&&... args)
+    template <typename F, typename... Args> void enqueue(F &&f, Args &&...args)
     {
         {
             std::unique_lock<std::mutex> lock(m_tasks_mutex);
@@ -55,7 +25,7 @@ public:
         m_tasks_cv.notify_one();
     }
 
-private:
+  private:
     std::vector<std::thread> m_threads;
     std::queue<std::function<void()>> m_tasks;
     std::mutex m_tasks_mutex;
@@ -63,4 +33,4 @@ private:
     bool m_terminate;
 };
 
-} // namespace Job
+} // namespace Common

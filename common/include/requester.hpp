@@ -5,11 +5,15 @@
 #include <string>
 #include <vector>
 
-class Requester {
-public:
+namespace Common
+{
+class Requester
+{
+  public:
     static std::vector<std::string> get_top_assets(const int limit = 50);
 
-private:
-    static size_t write_callback(void* contents, size_t size, size_t nmemb,
-        std::string* response);
+  private:
+    static size_t write_callback(void *contents, size_t size, size_t nmemb, std::string *response);
 };
+
+} // namespace Common

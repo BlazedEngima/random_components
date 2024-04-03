@@ -5,9 +5,10 @@
 #include <string>
 #include <vector>
 
-class CSVSymParser {
-public:
-    static std::vector<std::string> parse(const std::string& filename)
+class CSVSymParser
+{
+  public:
+    static std::vector<std::string> parse(const std::string &filename)
     {
         std::ifstream file(filename);
         std::vector<std::string> data;
@@ -16,9 +17,11 @@ public:
         // Skip the first line
         std::getline(file, line);
 
-        while (std::getline(file, line)) {
+        while (std::getline(file, line))
+        {
             size_t pos = line.find(':');
-            if (pos != std::string::npos) {
+            if (pos != std::string::npos)
+            {
                 line = line.substr(0, pos);
             }
 

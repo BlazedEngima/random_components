@@ -4,11 +4,13 @@
 #include <utility>
 #include <vector>
 
-namespace DataType {
+namespace Common::DataType
+{
 
-struct Record {
+struct Record
+{
     std::vector<std::pair<double, uint64_t>> data;
     std::mutex mutex;
 };
 
-} // namespace DataType
+} // namespace Common::DataType

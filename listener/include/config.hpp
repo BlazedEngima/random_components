@@ -6,22 +6,25 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
-namespace Config {
-class Read {
-public:
+namespace Config
+{
+class Read
+{
+  public:
     std::string host;
     std::string username;
     std::string password;
     std::string database_name;
     std::string csv_file_path;
 
-    Read(const std::filesystem::path& filepath)
+    Read(const std::filesystem::path &filepath)
     {
         std::filesystem::path dir_path = std::filesystem::current_path();
         std::filesystem::path config_path = dir_path / filepath;
 
         std::ifstream stream(config_path);
-        if (!stream.is_open()) {
+        if (!stream.is_open())
+        {
             throw std::runtime_error("Could not open config file at path: " + config_path.string());
         }
 

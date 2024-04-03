@@ -9,12 +9,14 @@ set_target_properties(
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
 
-target_include_directories(listener 
+target_include_directories(
+    listener 
     PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/include
             ${MySQLCPPConnector_INCLUDE_DIR}
 )
 
-target_link_libraries(listener 
+target_link_libraries(
+    listener 
     PUBLIC  ${MySQLCPPConnector_LIB}
             Common
             OpenSSL::SSL
