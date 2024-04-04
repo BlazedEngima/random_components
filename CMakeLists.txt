@@ -10,6 +10,7 @@ set(
      -Wextra                            \
      -Wpedantic                         \
      -Werror                            \
+     -fsanitize=address                 \
     "
 )
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

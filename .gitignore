@@ -1,7 +1,6 @@
 configs
 build
 build-vm
-poster_format.txt
 .clang-format
 .vscode
 .cache

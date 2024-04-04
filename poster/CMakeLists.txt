@@ -1,6 +1,8 @@
 
 add_executable(poster
     src/main.cpp
+    src/poster.cpp
+    src/requests.cpp
 )
 
 set_target_properties(
