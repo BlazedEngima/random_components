@@ -1,6 +1,6 @@
 #include <jobs.hpp>
 
-namespace Common
+namespace Common::Tools
 {
 JobQueue::JobQueue(const int size) : m_terminate(false)
 {
@@ -39,4 +39,4 @@ JobQueue::~JobQueue()
     }
 }
 
-} // namespace Common
+} // namespace Common::Tools

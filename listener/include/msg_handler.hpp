@@ -2,7 +2,10 @@
 
 #include <commons.hpp>
 
-struct MsgHandler
+namespace Listener::Handler
+{
+
+struct Msg
 {
     static void on_message(Common::client::message_ptr message, const std::shared_ptr<Common::book> &logbook)
     {
@@ -17,3 +20,5 @@ struct MsgHandler
         }
     }
 };
+
+} // namespace Listener::Handler

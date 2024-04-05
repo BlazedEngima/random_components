@@ -10,6 +10,7 @@ RUN microdnf -y update && microdnf install -y \
     openssl-devel \
     libcurl-devel \
     websocketpp-devel \
+    spdlog-devel \
     && microdnf clean all
 
 

@@ -6,7 +6,7 @@
 #include <queue>
 #include <thread>
 
-namespace Common
+namespace Common::Tools
 {
 
 class JobQueue

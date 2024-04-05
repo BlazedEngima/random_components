@@ -2,7 +2,12 @@
 
 #include <cstddef>
 #include <exchanges.hpp>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 #include <string>
+
+namespace Components
+{
 
 class Poster
 {
@@ -16,6 +21,9 @@ class Poster
 
     Poster(const API_KEY &key, const API_SECRET &secret);
 
+  protected:
+    std::shared_ptr<spdlog::logger> logger;
+
   private:
     static size_t write_callback(void *contents, size_t size, size_t nmemb, std::string *s);
 
@@ -24,3 +32,5 @@ class Poster
     HEADER header_line;
     REQUEST_HEADER request_header;
 };
+
+} // namespace Components

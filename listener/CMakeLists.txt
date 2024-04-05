@@ -1,7 +1,7 @@
 
 add_executable(listener
     src/main.cpp
-    src/db_handler.cpp
+    src/insertor.cpp
 )
 
 set_target_properties(
@@ -23,4 +23,5 @@ target_link_libraries(
             OpenSSL::Crypto
             nlohmann_json::nlohmann_json
             CURL::libcurl
+            spdlog::spdlog
 )

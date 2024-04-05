@@ -1,3 +1,4 @@
+#include <memory>
 #include <websocket.hpp>
 
 namespace Common
@@ -7,6 +8,10 @@ Websocket::Websocket() : m_client(std::make_shared<client>())
 {
     m_client->init_asio();
     m_client->set_tls_init_handler(std::bind(&Websocket::on_tls_init));
+    if (!spdlog::get("logger(websocket)")) {
+        spdlog::stdout_color_mt("logger(websocket)");
+    }
+    logger = spdlog::get("logger(websocket)");
 }
 
 context_ptr Websocket::on_tls_init()
@@ -19,7 +24,8 @@ context_ptr Websocket::on_tls_init()
     }
     catch (std::exception &e)
     {
-        std::cout << "Error in context pointer: " << e.what() << std::endl;
+        std::shared_ptr<spdlog::logger> logger = spdlog::get("logger(websocket)");
+        logger->error("Error in context pointer: {}", e.what());
     }
 
     return ctx;
@@ -37,7 +43,7 @@ void Websocket::connect(const std::string &uri)
 
     if (ec)
     {
-        std::cout << "Could not create connection because: " << ec.message() << std::endl;
+        logger->error("Could not create connection because: {}", ec.message());
         return;
     }
 

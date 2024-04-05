@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 
+namespace Config::Listener
+{
+
 class CSVSymParser
 {
   public:
@@ -33,3 +36,5 @@ class CSVSymParser
         return data;
     }
 };
+
+} // namespace Config::Listener

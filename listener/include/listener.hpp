@@ -3,6 +3,9 @@
 #include <msg_handler.hpp>
 #include <websocket.hpp>
 
+namespace Components
+{
+
 class Listener : public Common::Websocket
 {
   public:
@@ -10,10 +13,12 @@ class Listener : public Common::Websocket
     {
         m_client->set_message_handler(
             [this](websocketpp::connection_hdl /*hdl_connection*/, Common::client::message_ptr message) {
-                MsgHandler::on_message(message, m_book);
+                ::Listener::Handler::Msg::on_message(message, m_book);
             });
     }
 
   private:
     std::shared_ptr<Common::book> m_book;
 };
+
+} // namespace Components

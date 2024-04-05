@@ -3,12 +3,14 @@
 #include <compute.hpp>
 #include <config.hpp>
 #include <csv_sym_parser.hpp>
-#include <db_handler.hpp>
 #include <exchanges.hpp>
+#include <insertor.hpp>
 #include <jobs.hpp>
 #include <listener.hpp>
 #include <memory>
 #include <mutex>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 #include <string>
 #include <sym_handler.hpp>
 
@@ -17,21 +19,26 @@ constexpr int DB_PORT = 33060;
 
 int main(int argc, char *argv[])
 {
+    if (!spdlog::get("logger(listener)"))
+    {
+        spdlog::stdout_color_mt("logger(listener)");
+    }
+    std::shared_ptr<spdlog::logger> logger = spdlog::get("logger(listener)");
     if (argc != 2)
     {
-        std::cerr << "Usage: " << argv[0] << " <config_file_path>" << std::endl;
+        logger->error("Usage: {} <config_file_path>", argv[0]);
         return 1;
     }
 
     std::atomic<bool> running{true};
-    Common::JobQueue jobs{MAX_THREADS};
-    std::shared_ptr<Config::Read> info = std::make_shared<Config::Read>(argv[1]);
+    Common::Tools::JobQueue jobs{MAX_THREADS};
+    std::shared_ptr<Config::Listener::Read> info = std::make_shared<Config::Listener::Read>(argv[1]);
     std::shared_ptr<Common::book> logbook = std::make_shared<Common::book>();
-    std::shared_ptr<Listener> listener = std::make_shared<Listener>(logbook);
-    std::shared_ptr<DBHandler> db = std::make_shared<DBHandler>(info->host, info->username, info->password,
-                                                                info->database_name, DB_PORT, MAX_THREADS);
+    std::shared_ptr<Components::Listener> listener = std::make_shared<Components::Listener>(logbook);
+    std::shared_ptr<Listener::DB::Insertor> db = std::make_shared<Listener::DB::Insertor>(
+        info->host, info->username, info->password, info->database_name, DB_PORT, MAX_THREADS);
 
-    std::vector<std::string> symbols = CSVSymParser::parse(info->csv_file_path);
+    std::vector<std::string> symbols = Config::Listener::CSVSymParser::parse(info->csv_file_path);
 
     // subsribe to the top 50 symbols
     for (const std::string &symbol : symbols)
@@ -63,7 +70,7 @@ int main(int argc, char *argv[])
 
                 jobs.enqueue([&db, symbol, avg, timestamp] {
                     // may include exchange type in the future (switch + enum)
-                    std::string lowercase = SymHandler::Binance::transform(symbol);
+                    std::string lowercase = Listener::Handler::Symbol::Binance::transform(symbol);
                     db->insert_to_db(lowercase, avg, timestamp);
                 });
             });

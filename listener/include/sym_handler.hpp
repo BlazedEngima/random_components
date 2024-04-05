@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace SymHandler::Binance
+namespace Listener::Handler::Symbol::Binance
 {
 static std::string transform(const std::string &symbol)
 {
@@ -14,4 +14,4 @@ static std::string transform(const std::string &symbol)
     lower_case.append("_futures");
     return lower_case;
 }
-} // namespace SymHandler::Binance
+} // namespace Listener::Handler::Symbol::Binance

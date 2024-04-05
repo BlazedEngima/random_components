@@ -1,20 +1,28 @@
 #pragma once
 
+#include <memory>
 #include <mutex>
 #include <mysqlx/xdevapi.h>
 #include <queue>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
+namespace Common
+{
 
 class DBHandler
 {
   public:
-    void insert_to_db(const std::string &symbol, const double price, const uint64_t time);
     DBHandler(const std::string &host, const std::string &user, const std::string &password, const std::string &db_name,
               const int port, const size_t pool_size);
 
-    ~DBHandler();
+    virtual ~DBHandler();
 
-  private:
+  protected:
     std::queue<mysqlx::Session *> sessions;
     const std::string db_name;
     std::mutex mutex;
+    std::shared_ptr<spdlog::logger> logger;
 };
+
+} // namespace Common

@@ -2,7 +2,8 @@
 add_executable(poster
     src/main.cpp
     src/poster.cpp
-    src/requests.cpp
+    src/request.cpp
+    src/request_attributes_builder.cpp
 )
 
 set_target_properties(
@@ -24,4 +25,5 @@ target_link_libraries(
             OpenSSL::Crypto
             nlohmann_json::nlohmann_json
             CURL::libcurl
+            spdlog::spdlog
 )

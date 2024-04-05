@@ -1,13 +1,11 @@
-#include <cstddef>
-#include <cstdio>
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include <encrypt.hpp>
-// #include <memory>
 #include <nlohmann/json.hpp>
 #include <poster.hpp>
-#include <stdexcept>
-#include <string>
+
+namespace Components
+{
 
 size_t Poster::write_callback(void *contents, size_t size, size_t nmemb, std::string *s)
 {
@@ -24,7 +22,8 @@ int Poster::send(Exchange::Server server, std::string &payload)
 
     if (!curl)
     {
-        throw std::runtime_error("Failed to initialize curl!");
+        logger->error("failed to initialize curl");
+        return -1;
     }
 
     struct curl_slist *headers = NULL;
@@ -46,12 +45,13 @@ int Poster::send(Exchange::Server server, std::string &payload)
 
     if (res != CURLE_OK)
     {
-        fprintf(stderr, "failed to perform curl request: %s\n", curl_easy_strerror(res));
+        logger->error("failed to perform curl request: {}", curl_easy_strerror(res));
         return -1;
     }
 
+    // maybe we should check the response status code
     nlohmann::json response_json = nlohmann::json::parse(response);
-    fprintf(stdout, "%s\n", response_json.dump(4).c_str());
+    logger->info("response: {}", response_json.dump(4));
 
     return 0;
 }
@@ -60,4 +60,11 @@ Poster::Poster(const API_KEY &key, const API_SECRET &secret) : key(key), secret(
 {
     header_line = "X-MBX-APIKEY: " + key;
     request_header = header_line.c_str();
+    if (!spdlog::get("logger(poster)"))
+    {
+        spdlog::stdout_color_mt("logger(poster)");
+    }
+    logger = spdlog::get("logger(poster)");
 }
+
+} // namespace Components

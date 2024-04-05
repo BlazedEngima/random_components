@@ -2,12 +2,15 @@
 
 #include <filesystem>
 #include <fstream>
-#include <iostream>
+#include <memory>
 #include <nlohmann/json.hpp>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 #include <string>
 
-namespace Config
+namespace Config::Listener
 {
+
 class Read
 {
   public:
@@ -38,13 +41,17 @@ class Read
         csv_file_path = (dir_path / config["csv_file_path"]).string();
 
         stream.close();
-
-        std::cout << "Config file loaded successfully" << std::endl;
-        std::cout << "Host: " << host << std::endl;
-        std::cout << "Username: " << username << std::endl;
-        std::cout << "Password: " << password << std::endl;
-        std::cout << "Database name: " << database_name << std::endl;
-        std::cout << "CSV file path: " << csv_file_path << std::endl;
+        if (!spdlog::get("logger(config)"))
+        {
+            spdlog::stdout_color_mt("logger(config)");
+        }
+        std::shared_ptr<spdlog::logger> logger = spdlog::get("logger(config)");
+        logger->info("Config file loaded successfully");
+        logger->info("Host: {}", host);
+        logger->info("Username: {}", username);
+        logger->info("Database name: {}", database_name);
+        logger->info("CSV file path: {}", csv_file_path);
     }
 };
-} // namespace Config
+
+} // namespace Config::Listener

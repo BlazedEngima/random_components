@@ -1,25 +1,9 @@
-#include <cstdint>
-#include <requests.hpp>
-#include <string>
+#include <request.hpp>
 
 namespace Exchange::Binance
 {
 
-RequestBodyAttributes::RequestBodyAttributes(const uint64_t timestamp, const std::string &symbol,
-                                             const std::string &side, const std::string &type,
-                                             const std::string &timeInForce, const std::string &quantity,
-                                             const std::string &price, const std::string &newClientOrderId,
-                                             const std::string &stopPrice, const std::string &icebergQty,
-                                             const std::string &newOrderRespType, const std::string &recvWindow)
-    : symbol(symbol), side(side), type(type), timeInForce(timeInForce), quantity(quantity), price(price),
-      newClientOrderId(newClientOrderId), stopPrice(stopPrice), icebergQty(icebergQty),
-      newOrderRespType(newOrderRespType), recvWindow(recvWindow), timestamp(timestamp)
-{
-}
-
-std::string CreateRequest::payload(
-    // const std::string &apiKey,
-    const RequestBodyAttributes &data)
+std::string Request::create_payload(const RequestBodyAttributesBuilder::RequestBodyAttributes &data)
 {
     std::string payload;
     // payload += "apiKey=" + apiKey + "&";

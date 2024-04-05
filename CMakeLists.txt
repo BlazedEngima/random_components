@@ -21,7 +21,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 
 find_package(OpenSSL REQUIRED)
 find_package(MySQLCPPConnector REQUIRED)
-find_package(CURL REQUIRED COMPONENTS HTTP HTTPS) 
+find_package(CURL REQUIRED COMPONENTS HTTP HTTPS)
+find_package(spdlog REQUIRED)
 include(cmake/fetchers/NlohmannJSON.cmake)
 
 add_subdirectory(common)
