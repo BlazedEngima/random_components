@@ -1,3 +1,4 @@
+#include "request_types.hpp"
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include <encrypt.hpp>
@@ -14,7 +15,7 @@ size_t Poster::write_callback(void *contents, size_t size, size_t nmemb, std::st
     return write_size;
 }
 
-int Poster::send(Exchange::Server server, std::string &payload)
+int Poster::send(Exchange::Server server, Exchange::HTTPRequest::RequestType request_type, std::string &payload)
 {
     std::string signature = Common::EncryptProtocol::HMAC_SHA256::sign(secret, payload);
     payload += "&signature=" + signature;
@@ -28,6 +29,9 @@ int Poster::send(Exchange::Server server, std::string &payload)
 
     struct curl_slist *headers = NULL;
     headers = curl_slist_append(headers, request_header);
+
+    // set request type
+    curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, Exchange::HTTPRequest::RequestTypeStrings.at(request_type));
 
     curl_easy_setopt(curl, CURLOPT_URL, Exchange::Futures::RestAddresses.at(server));
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);

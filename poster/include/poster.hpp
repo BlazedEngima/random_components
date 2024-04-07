@@ -2,8 +2,9 @@
 
 #include <cstddef>
 #include <exchanges.hpp>
-#include <spdlog/spdlog.h>
+#include <request_types.hpp>
 #include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/spdlog.h>
 #include <string>
 
 namespace Components
@@ -17,7 +18,7 @@ class Poster
     using REQUEST_HEADER = const char *;
 
   public:
-    int send(Exchange::Server server, std::string &payload);
+    int send(Exchange::Server server, Exchange::HTTPRequest::RequestType request_type, std::string &payload);
 
     Poster(const API_KEY &key, const API_SECRET &secret);
 

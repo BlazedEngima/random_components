@@ -2,7 +2,9 @@
 add_executable(poster
     src/main.cpp
     src/poster.cpp
+    src/reader.cpp
     src/request.cpp
+    src/request_types.cpp
     src/request_attributes_builder.cpp
 )
 

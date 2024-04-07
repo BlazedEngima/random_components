@@ -4,8 +4,9 @@
 #include <poster.hpp>
 #include <request.hpp>
 #include <request_attributes_builder.hpp>
-#include <spdlog/spdlog.h>
+#include <request_types.hpp>
 #include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/spdlog.h>
 
 int main()
 {
@@ -22,18 +23,21 @@ int main()
     Exchange::Binance::RequestBodyAttributesBuilder request_attributes =
         Exchange::Binance::RequestBodyAttributesBuilder()
             .setSymbol("BTCUSDT")
-            .setSide("BUY")
+            // .setSide("BUY")
             .setType("LIMIT")
-            .setTimeInForce("GTC")
-            .setQuantity("0.002")
-            .setPrice("66000")
+            // .setTimeInForce("GTC")
+            // .setQuantity("0.002")
+            // .setPrice("67000")
             .setRecvWindow("5000")
+            .setOrderId("3772236109")
             .setTimestamp(timestamp);
 
     std::string payload = Exchange::Binance::Request::create_payload(request_attributes.build());
     Components::Poster poster(API_KEY, API_SECRET);
     logger->info("payload: {}", payload);
-    int response_status = poster.send(Exchange::Server::BinanceTestnet, payload);
+    int response_status =
+        // poster.send(Exchange::Server::BinanceTestnet, Exchange::HTTPRequest::RequestType::POST, payload);
+        poster.send(Exchange::Server::BinanceTestnet, Exchange::HTTPRequest::RequestType::DELETE, payload);
     if (response_status == -1)
     {
         logger->critical("Failed to send request!");

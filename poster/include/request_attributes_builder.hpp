@@ -21,6 +21,11 @@ class RequestBodyAttributesBuilder
         std::string icebergQty;
         std::string newOrderRespType;
         std::string recvWindow;
+
+        std::string origClientOrderId;
+        std::string orderId;
+        std::string cancelRestrictions;
+
         uint64_t timestamp;
     };
 
@@ -36,6 +41,9 @@ class RequestBodyAttributesBuilder
     RequestBodyAttributesBuilder &setNewOrderRespType(const std::string &newOrderRespType);
     RequestBodyAttributesBuilder &setRecvWindow(const std::string &recvWindow);
     RequestBodyAttributesBuilder &setTimestamp(uint64_t timestamp);
+    RequestBodyAttributesBuilder &setOrigClientOrderId(const std::string &origClientOrderId);
+    RequestBodyAttributesBuilder &setOrderId(const std::string &orderId);
+    RequestBodyAttributesBuilder &setCancelRestrictions(const std::string &cancelRestrictions);
 
     RequestBodyAttributes build() const;
 

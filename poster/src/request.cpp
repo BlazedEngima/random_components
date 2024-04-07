@@ -29,6 +29,12 @@ std::string Request::create_payload(const RequestBodyAttributesBuilder::RequestB
         payload += "newOrderRespType=" + data.newOrderRespType + "&";
     if (!data.recvWindow.empty())
         payload += "recvWindow=" + data.recvWindow + "&";
+    if (!data.origClientOrderId.empty())
+        payload += "origClientOrderId=" + data.origClientOrderId + "&";
+    if (!data.orderId.empty())
+        payload += "orderId=" + data.orderId + "&";
+    if (!data.cancelRestrictions.empty())
+        payload += "cancelRestrictions=" + data.cancelRestrictions + "&";
     payload += "timestamp=" + std::to_string(data.timestamp);
 
     return payload;

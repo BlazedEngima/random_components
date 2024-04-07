@@ -80,4 +80,22 @@ RequestBodyAttributesBuilder::RequestBodyAttributes RequestBodyAttributesBuilder
     return attrs;
 }
 
+RequestBodyAttributesBuilder &RequestBodyAttributesBuilder::setOrigClientOrderId(const std::string &origClientOrderId)
+{
+    attrs.origClientOrderId = origClientOrderId;
+    return *this;
+}
+
+RequestBodyAttributesBuilder &RequestBodyAttributesBuilder::setOrderId(const std::string &orderId)
+{
+    attrs.orderId = orderId;
+    return *this;
+}
+
+RequestBodyAttributesBuilder &RequestBodyAttributesBuilder::setCancelRestrictions(const std::string &cancelRestrictions)
+{
+    attrs.cancelRestrictions = cancelRestrictions;
+    return *this;
+}
+
 } // namespace Exchange::Binance

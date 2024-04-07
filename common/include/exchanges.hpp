@@ -13,6 +13,6 @@ enum class Server : uint8_t
 namespace Futures
 {
 extern const std::unordered_map<Server, const char *> RestAddresses;
-}
+} // namespace Futures
 
 } // namespace Exchange
