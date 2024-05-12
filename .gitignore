@@ -1,6 +1,5 @@
 configs
 build
 build-vm
-.clang-format
 .vscode
 .cache
